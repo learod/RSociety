@@ -71,3 +71,4 @@ gem 'active_model_serializers', '~> 0.10.0.rc2'
 gem "twitter-bootstrap-rails"
 gem 'haml', '~> 4.0.5'
 gem 'bootstrap-datepicker-rails'
+gem 'telegram-bot-ruby'
