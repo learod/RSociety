@@ -12,16 +12,6 @@ angular.module('RSociety', [
         templateUrl: "templates/home.html",
         controller: 'HomeController'
       })
-      .state('categories', {
-        url: "/categories",
-        templateUrl: "templates/categories.html",
-        controller: "CategoriesController"
-      })
-      .state('category', {
-        url: "/category/:name",
-        templateUrl: "templates/category.html",
-        controller: "CategoryController"
-      })
       .state('art', {
         url: "/art/:id",
         controller: "ArtController",

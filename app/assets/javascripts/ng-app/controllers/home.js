@@ -1,4 +1,4 @@
 angular.module('RSociety')
-  .controller('HomeController', function($scope) {
-    $scope.things = ['Angular', 'Rails 4.1', 'Working', 'Together!!'];
-  });
+  .controller('HomeController', ['$scope', 'ArtService', function($scope, artService) {
+    $scope.arts = artService.getArts();
+  }]);

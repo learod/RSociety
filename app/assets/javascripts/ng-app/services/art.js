@@ -1,18 +1,10 @@
 angular.module('RSociety')
     .service('ArtService', ['$http', function ($http) {
 
-        var urlBase = '/api/customers';
+        var urlBase = '/arts/todas';
 
-        this.getArt = function () {
-            return $http.get(urlBase);
-        };
-
-        this.getArtsByCategory = function (id) {
-            return $http.get(urlBase + '/' + id);
-        };
-
-        this.getCategories = function() {
-            return $http.get(urlBase);
+        this.getArt = function (id) {
+            return $http.get(urlBase + id);
         };
 
         this.getArts = function() {

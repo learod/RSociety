@@ -4,6 +4,6 @@
 * Description
 */
 angular.module('RSociety')
-  .controller('ArtController', function($scope, $stateParams){
-        console.log($stateParams.id);
-  });
+  .controller('ArtController', ['$scope', '$stateParams', 'ArtService', function($scope, $stateParams, artService) {
+      $scope.art = artService.getArt($stateParams.id);
+  }]);

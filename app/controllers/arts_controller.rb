@@ -27,9 +27,9 @@ class ArtsController < ApplicationController
   # POST /arts.json
   def create
     @art = Art.new(art_params)
-    
+
     respond_to do |format|
-      if @art.save     
+      if @art.save
         format.html { redirect_to @art, notice: 'Art was successfully created.' }
         format.json { render :show, status: :created, location: @art }
       else
@@ -44,7 +44,7 @@ class ArtsController < ApplicationController
   def update
     respond_to do |format|
       if @art.update(art_params)
-        @art.photos.delete_all         
+        @art.photos.delete_all
         format.html { redirect_to @art, notice: 'Art was successfully updated.' }
         format.json { render :show, status: :ok, location: @art }
       else
@@ -66,11 +66,9 @@ class ArtsController < ApplicationController
 
 
   def todas
-    @todas = Art.all 
-    respond_to do |format|      
-      format.json { head :no_content }
-    end    
-  end  
+    @todas = Art.all
+    render json: @todas
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
