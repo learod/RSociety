@@ -72,3 +72,5 @@ gem "twitter-bootstrap-rails"
 gem 'haml', '~> 4.0.5'
 gem 'bootstrap-datepicker-rails'
 gem 'telegram-bot-ruby'
+gem "paperclip", "~> 4.3"
+gem 'geocoder'
