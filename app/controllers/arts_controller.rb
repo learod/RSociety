@@ -15,19 +15,21 @@ class ArtsController < ApplicationController
   # GET /arts/new
   def new
     @art = Art.new
+    @art.photos.build
   end
 
   # GET /arts/1/edit
   def edit
+    @art.photos.build
   end
 
   # POST /arts
   # POST /arts.json
   def create
     @art = Art.new(art_params)
-
+    
     respond_to do |format|
-      if @art.save
+      if @art.save     
         format.html { redirect_to @art, notice: 'Art was successfully created.' }
         format.json { render :show, status: :created, location: @art }
       else
@@ -42,6 +44,7 @@ class ArtsController < ApplicationController
   def update
     respond_to do |format|
       if @art.update(art_params)
+        @art.photos.delete_all         
         format.html { redirect_to @art, notice: 'Art was successfully updated.' }
         format.json { render :show, status: :ok, location: @art }
       else
@@ -69,6 +72,6 @@ class ArtsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def art_params
-      params.require(:art).permit(:title, :description, :latitude, :longitude, :address)
+      params.require(:art).permit(:title, :description, :latitude, :longitude, :address,photos_attributes: [:image])
     end
 end

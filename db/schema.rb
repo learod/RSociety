@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 20150829164252) do
     t.string   "address"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "type"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "art_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "photos", ["art_id"], name: "index_photos_on_art_id", using: :btree
+
+  add_foreign_key "photos", "arts"
 end

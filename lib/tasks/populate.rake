@@ -3,12 +3,13 @@ namespace :populate do
   task data: :environment do
     file = CSV.open("#{Rails.root}/public/esculturas.csv", "r", {:col_sep => "|"}) 
     file.to_a.each do |row|
-      # binding.pry
-      description = "<b>A&Ntilde:O EMPLAZAMIENTO/INAUGURACI&Oacute;N</b>"
-      description << "#{row[2].nil? ? 'Sin Datos' : row[2] } <br>" 
-      description << "<b>Autor <b/> #{row[3]}<br>"
-      description << "<b>Material <b/> #{row[5]}<br>"
-      description << "<b>Premios <b/> #{row[9].nil? ? 'Sin Datos' : row[9] }<br>"
+      description = "Obra: #{row[1].nil? ? 'Sin Titulo' :  row[1].upcase} \n"
+      description << "Direccion: #{row[7]} \n"
+      description << "AÑO EMPLAZAMIENTO/INAUGURACION:"
+      description << "#{row[2].nil? ? 'Sin Datos' : row[2] } \n" 
+      description << "Autor: #{row[3]} \n"
+      description << "Material: #{row[5]} \n"
+      description << "Premios: #{row[9].nil? ? 'Sin Datos' : row[9] } \n"
 
       Art.create(
         title: row[1],
