@@ -1,0 +1,26 @@
+.page-header
+  %h1="Arte"
+%table.table.table-striped
+  %thead
+    %tr
+      %th= "Titulo"
+      %th= "Descripción"
+      %th= "Latitud"
+      %th= "Longitud"
+      %th= "Dirección"
+      %th= "Creado el"
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @arts.each do |art|
+      %tr
+        %td= link_to art.title, art_path(art)
+        %td= art.description
+        %td= art.latitude
+        %td= art.longitude
+        %td= art.address
+        %td=l art.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_art_path(art), :class => 'btn btn-default btn-xs'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), art_path(art), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+
+= link_to "Nuevo", new_art_path, :class => 'btn btn-primary'
