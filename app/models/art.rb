@@ -5,4 +5,11 @@ class Art < ActiveRecord::Base
 
   reverse_geocoded_by :latitude, :longitude
 
+  validates :title, :description, presence: true
+
+
+  def photo
+    photos.first
+  end
+
 end

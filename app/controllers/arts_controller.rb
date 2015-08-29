@@ -66,9 +66,11 @@ class ArtsController < ApplicationController
 
 
   def todas
-    @todas = Art.all
-    render json: @todas
+    @todas = Art.all.sample(9).map{|a| {image: a.photo.image.url, description: a.description, title: a.title}}
+    render json: @todas.to_json
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -11,13 +11,20 @@ namespace :populate do
       description << "Material: #{row[5]} \n"
       description << "Premios: #{row[9].nil? ? 'Sin Datos' : row[9] } \n"
 
-      Art.create(
+      art = Art.create(
         title: row[1],
         address: row[7],
         latitude: row[8] ? row[8].split(',')[0] : nil,
         longitude: row[8] ? row[8].split(',')[1] : nil,
         description: description
       )
+
+      photo = Photo.new
+      file = File.open("#{Rails.root}/public/pictures/#{row[6]}")
+      photo.image = file
+      file.close
+      
+      art.photos << photo
     end
   end
 end
