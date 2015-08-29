@@ -1,28 +1,60 @@
-= form_for @art, html: { class: "form form-horizontal art" } do |f|
+= form_for @art, html: { class: "form form-horizontal art", multipart: true } do |f|
   .form-group
     = f.label :title, class: 'control-label'
     .controls
       = f.text_field :title, class: 'form-control', required: true
     = error_span(@art[:title])
   .form-group
-    = f.label :description, class: 'control-label'
+    = f.label :description, 'Descripción', class: 'control-label'
     .controls
-      = f.text_field :description, class: 'form-control', required: true
+      = f.text_area :description, class: 'form-control', required: true
     = error_span(@art[:description])
   .form-group
-    = f.label :latitude, class: 'control-label'
+    = f.label :latitude, 'Latitud',class: 'control-label'
     .controls
-      = f.text_field :latitude, class: 'form-control', required: true
+      = f.text_field :latitude, class: 'form-control', readonly: true
     = error_span(@art[:latitude])
   .form-group
-    = f.label :longitude, class: 'control-label'
+    = f.label :longitude, 'Longitud',class: 'control-label'
     .controls
-      = f.text_field :longitude, class: 'form-control', required: true
+      = f.text_field :longitude, class: 'form-control', readonly: true
     = error_span(@art[:longitude])
   .form-group
-    = f.label :address, class: 'control-label'
+    = f.label :address, 'Dirección',class: 'control-label'
     .controls
       = f.text_field :address, class: 'form-control', required: true
     = error_span(@art[:address])
+  .controls  
+    = render 'mapa'
+
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br  
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br  
+  %br  
+  %br  
+  %br  
+  %br      
+  .controls
+    = f.fields_for :photos do |ph|
+      = ph.file_field :image 
+      %br
+      %br      
   = f.submit nil,class: 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), arts_path, :class => 'btn btn-default'

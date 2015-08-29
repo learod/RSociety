@@ -75,3 +75,4 @@ gem 'telegram-bot-ruby'
 gem "paperclip", "~> 4.3"
 gem 'geocoder'
 gem 'haml-rails'
+gem 'gmaps4rails'

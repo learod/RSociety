@@ -2,27 +2,33 @@
   %h1="Arte"
 
 %p
-  %strong= model_class.human_attribute_name(:title) + ':'
+  %strong= 'Titulo:'
   %br
   = @art.title
 %p
-  %strong= model_class.human_attribute_name(:description) + ':'
+  %strong='Descripción:'
   %br
   = @art.description
 %p
-  %strong= model_class.human_attribute_name(:latitude) + ':'
+  %strong= 'Latitud:'
   %br
   = @art.latitude
 %p
-  %strong= model_class.human_attribute_name(:longitude) + ':'
+  %strong= 'Longitud:'
   %br
   = @art.longitude
 %p
-  %strong= model_class.human_attribute_name(:address) + ':'
+  %strong= 'Direccion:'
   %br
   = @art.address
 
-
+-unless @art.photos.blank?  
+  = 'Fotos:'
+  %br
+  - @art.photos.each do |photo|
+    = image_tag photo.image.url(:medium) 
+    %br
+%br
 = link_to t('.back', :default => t("helpers.links.back")), arts_path, :class => 'btn btn-default'
 = link_to t('.edit', :default => t("helpers.links.edit")), edit_art_path(@art), :class => 'btn btn-default'
 = link_to t('.destroy', :default => t("helpers.links.destroy")), art_path(@art), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Estas Seguro?')) }, :class => 'btn btn-danger'
