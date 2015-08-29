@@ -51,10 +51,18 @@
   %br  
   %br  
   %br      
+  -unless @art.photos.blank?  
+    %br
+    - @art.photos.each do |photo|
+      -unless photo.image_file_name.blank?
+        = image_tag photo.image.url(:medium) 
+        %br
+  %br
+      
   .controls
     = f.fields_for :photos do |ph|
-      = ph.file_field :image 
+      = ph.file_field :image
       %br
       %br      
-  = f.submit nil,class: 'btn btn-primary'
+  = f.submit nil,class: 'btn btn-primary',value:'Crear'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), arts_path, :class => 'btn btn-default'

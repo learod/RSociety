@@ -20,6 +20,7 @@ class ArtsController < ApplicationController
 
   # GET /arts/1/edit
   def edit
+    @art.photos.build
   end
 
   # POST /arts
@@ -41,15 +42,9 @@ class ArtsController < ApplicationController
   # PATCH/PUT /arts/1
   # PATCH/PUT /arts/1.json
   def update
-    raise 'error'
     respond_to do |format|
       if @art.update(art_params)
-        @art.photos.delete_all
-        if params[:images]
-          params[:images].each { |image|
-            @art.photos.create(image: image)
-          }
-        end         
+        @art.photos.delete_all         
         format.html { redirect_to @art, notice: 'Art was successfully updated.' }
         format.json { render :show, status: :ok, location: @art }
       else
